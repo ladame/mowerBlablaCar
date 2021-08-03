@@ -8,14 +8,17 @@ Code, Compile, Run and Debug online from anywhere in world.
 *******************************************************************************/
 #include "includes/ReadFile.hpp"
 #include "includes/Lawn.hpp"
+#include "includes/Mower.hpp"
 #include <thread>
+#include <list>
+
 
 using namespace std;
 void function(string const & axes, string const & listInstruction, Lawn const & lawn)
 {
     Mower mower(axes, listInstruction, lawn);
 //execution part
-   cout << "\nThread" << " \n";
+   //cout << "\nThread" << " \n";
 }
 
 int main()
@@ -37,8 +40,8 @@ int main()
        // cout << "index" << index << "\n";
         //use emplace_back so it will create the object instead of copy, for optimization     
         //mowers.emplace_back(mower);
-        //ThreadVector.emplace_back([&](){function(inputLines[index], inputLines[index+1], lawn);});
-        //ThreadVector.emplace_back([&](){Mower mower(inputLines[index], inputLines[index+1]n lawn);});
+        //ThreadVector.emplace_back([&](){function(inputLines[index], inputLines[index+1]);});
+        //ThreadVector.emplace_back([&](){Mower mower(inputLines[index], inputLines[index+1], lawn);});
         index += 1;  
     }
 
@@ -48,7 +51,6 @@ int main()
         t.join();
         numbThread++;
     }
-    cout << "numbThread" << numbThread << '\n';
     /*
     for(auto& mower : mowers){
         mower.run();
