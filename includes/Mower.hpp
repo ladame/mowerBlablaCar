@@ -6,14 +6,21 @@
 using namespace std;
 
 class Mower : public Coordinates{
+    
     private:
-    char orientation;
-    string instruction;
-
+    const char*   instruction;
+    static int instanceMower;
+    
     public:
     Mower(string const & , string const & );
-    void setOrientation(char);
-    char getOrientation();
+    void setPosition(Coordinates);
+    Coordinates getPosition();
+    void run();
+    Coordinates move(char charCommand);
+    void northCase(char charCommand);
+    void westCase(char charCommand);
+    void southCase(char charCommand);
+    void eastCase(char charCommand);
 
 };
 

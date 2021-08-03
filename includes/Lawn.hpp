@@ -1,8 +1,7 @@
-#include "Coordinates.hpp"
-#include <string>
-
 #ifndef Lawn_H
 #define Lawn_H
+#include "Coordinates.hpp"
+#include <string>
 
 using namespace std;
 class Lawn{

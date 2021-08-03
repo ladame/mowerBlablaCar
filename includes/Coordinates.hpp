@@ -7,10 +7,10 @@
 
 using namespace std;
 class Coordinates{
-    private:
+    protected:
         int x;
         int y;
-        char *orientation;
+        char orientation[1];
 
     public:
     Coordinates(string const & xy);
