@@ -2,11 +2,10 @@
 #include <iostream>
 
 int Mower::instanceMower = 0;
-Mower::Mower(string const & axes, string const & listInstruction):Coordinates(axes),instruction(&listInstruction[0]) {
+Mower::Mower(string const & axes, string const & listInstruction, Lawn const & _lawn):Coordinates(axes),instruction(&listInstruction[0]), lawn(_lawn) {
     //char_arr = &listInstruction[0];
     instanceMower++;
     this->run();
-    
 }
 
 void Mower::run(void){
@@ -25,7 +24,7 @@ void Mower::run(void){
         index++;
     }
     
-    cout << "Last position : (" << x << ", " << y  << ")\n" ;
+    cout << "Last position mower : " << instanceMower << "(" << x << ", " << y  << ")\n" ;
     cout << "Last orientation: " << orientation << "\n" ;
     
 }
@@ -40,13 +39,13 @@ Coordinates Mower::move(char charCommand){
 
 void Mower::northCase(char charCommand){
     if(charCommand=='L'){
-        x = x-1;
+        xMinus1();
         *orientation = 'W';
     }else if(charCommand=='R'){
-        x = x+1;
+        xPlus1();
         *orientation = 'E';
     }else if(charCommand=='F'){
-        y = y+1;
+        yPlus1();
         *orientation = 'N';
     }else{
         cout << "Wrong instruction \n" ;
@@ -55,13 +54,13 @@ void Mower::northCase(char charCommand){
 
 void Mower::eastCase(char charCommand){
     if(charCommand=='L'){
-        y = y+1;
+        yPlus1();
         *orientation = 'N';
     }else if(charCommand=='R'){
-        y = y-1;
+        yMinus1();
         *orientation = 'S';
     }else if(charCommand=='F'){
-        x = x+1;
+        xPlus1();
         *orientation = 'E';
     }else{
         cout << "Wrong instruction \n" ;
@@ -70,13 +69,13 @@ void Mower::eastCase(char charCommand){
 
 void Mower::southCase(char charCommand){
     if(charCommand=='L'){
-        x = x+1;
+        xPlus1();
         *orientation = 'E';
     }else if(charCommand=='R'){
-        x = x-1;
+        xMinus1();
         *orientation = 'W';
     }else if(charCommand=='F'){
-        y = y-1;
+        yMinus1();
         *orientation = 'S';
     }else{
         cout << "Wrong instruction \n" ;
@@ -85,15 +84,39 @@ void Mower::southCase(char charCommand){
 
 void Mower::westCase(char charCommand){
     if(charCommand=='L'){
-        y = y-1;
+        yMinus1();
         *orientation = 'S';
     }else if(charCommand=='R'){
-        y = y+1;
+        yPlus1();
         *orientation = 'N';
     }else if(charCommand=='F'){
-        x = x-1;
+        xMinus1();
         *orientation = 'W';
     }else{
         cout << "Wrong instruction \n" ;
+    }
+}
+
+void Mower::xMinus1(){
+    if((x-1) >= 0){
+        x = x-1;
+    }
+}
+
+void Mower::xPlus1(){
+    if((x+1) <= lawn.getLawnX()){
+        x = x+1;
+    }
+}
+
+void Mower::yMinus1(){
+    if((y-1) >= 0){
+        y = y-1;
+    }
+}
+
+void Mower::yPlus1(){
+    if((y+1) <= lawn.getLawnY()){
+        y = y+1;
     }
 }
